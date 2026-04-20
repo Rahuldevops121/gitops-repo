@@ -4,7 +4,7 @@ backend:
   image:
     repository: rahuldock44/backend
     pullPolicy: Always
-    tag: "latest"
+    tag: "8"
   service:
     type: ClusterIP
     port: 3000
@@ -20,7 +20,7 @@ frontend:
   image:
     repository: rahuldock44/frontend
     pullPolicy: Always
-    tag: "latest"
+    tag: "8"
   service:
     type: NodePort
     port: 80
