@@ -2,8 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: backend
+  namespace: {{ .Release.Namespace }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
       app: backend
@@ -14,6 +15,9 @@ spec:
     spec:
       containers:
       - name: backend
-        image: rahuldock44/backend:latest
+        image: "{{ .Values.backend.image.repository }}:{{ .Values.backend.image.tag }}"
+        imagePullPolicy: {{ .Values.backend.image.pullPolicy }}
         ports:
         - containerPort: 3000
+        resources:
+          {{- toYaml .Values.backend.resources | nindent 10 }}

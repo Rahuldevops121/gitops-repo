@@ -1,8 +1,5 @@
-# Values for devsecops-app - Full Stack Application
-
 replicaCount: 1
 
-# Backend image - Jenkins will update this tag
 backend:
   image:
     repository: rahuldock44/backend
@@ -19,7 +16,6 @@ backend:
       cpu: 200m
       memory: 256Mi
 
-# Frontend image - Jenkins will update this tag
 frontend:
   image:
     repository: rahuldock44/frontend
@@ -37,7 +33,6 @@ frontend:
       cpu: 200m
       memory: 256Mi
 
-# MongoDB - stable, no CI updates needed
 mongodb:
   image:
     repository: mongo
@@ -55,17 +50,7 @@ mongodb:
       memory: 256Mi
 
 serviceAccount:
-  create: true
-  automount: true
-  annotations: {}
-  name: ""
-
-podAnnotations: {}
-podSecurityContext: {}
-securityContext: {}
-
-ingress:
-  enabled: false
+  create: false
 
 autoscaling:
   enabled: false

@@ -2,8 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend
+  namespace: {{ .Release.Namespace }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
       app: frontend
@@ -14,6 +15,9 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: rahuldock44/frontend:latest
+        image: "{{ .Values.frontend.image.repository }}:{{ .Values.frontend.image.tag }}"
+        imagePullPolicy: {{ .Values.frontend.image.pullPolicy }}
         ports:
         - containerPort: 80
+        resources:
+          {{- toYaml .Values.frontend.resources | nindent 10 }}
